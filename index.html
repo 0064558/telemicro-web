@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TM Telemigro • Informática Profissional</title>
+  <meta name="description" content="Manutenção de PCs, notebooks, recarga de toner, venda de computadores e suporte 24h em São João Evangelista - MG" />
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg: #0F0F1A;
+      --card: #1A1A2E;
+      --accent: #00D4FF;
+      --red: #FF3366;
+      --text: #E0E0FF;
+      --gray: #8892B0;
+      --border: rgba(0, 212, 255, 0.2);
+      --glow: 0 0 40px rgba(0, 212, 255, 0.5);
+      --transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      --gradient-text: linear-gradient(120deg, #ffffff, #00D4FF, #0099CC);
+      --gradient-title: linear-gradient(90deg, #ffffff, #00D4FF);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+
+    #particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
+
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(15, 15, 26, 0.98); backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border); padding: 1.5rem 0;
+    }
+
+    .nav-container { max-width: 1600px; margin: 0 auto; padding: 0 3rem; display: flex; justify-content: space-between; align-items: center; }
+
+    .logo img { height: 80px; filter: drop-shadow(0 0 20px var(--accent)); transition: var(--transition); }
+    .logo img:hover { transform: rotate(5deg) scale(1.1); }
+
+    nav ul { display: flex; gap: 3.5rem; }
+    nav a { color: var(--text); text-decoration: none; font-weight: 600; font-size: 1.1rem; position: relative; }
+    nav a::after { content: ''; position: absolute; bottom: -8px; left: 50%; width: 0; height: 3px; background: var(--accent); transition: var(--transition); transform: translateX(-50%); box-shadow: var(--glow); }
+    nav a:hover::after { width: 100%; }
+
+    .btn-cta {
+      background: var(--gradient-text); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+      padding: 1rem 2.8rem; border: 2px solid transparent; border-image: var(--gradient-text) 1; border-radius: 50px;
+      font-weight: 800; font-size: 1.1rem; text-decoration: none; box-shadow: var(--glow); transition: var(--transition); position: relative; overflow: hidden;
+    }
+    .btn-cta::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: var(--gradient-text); opacity: 0.1; transition: var(--transition); }
+    .btn-cta:hover::before { left: 100%; }
+    .btn-cta:hover { transform: translateY(-5px) scale(1.05); box-shadow: 0 0 60px rgba(0, 212, 255, 0.6); }
+
+    .hero { height: 100vh; min-height: 800px; display: flex; align-items: center; position: relative; z-index: 2; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at center, rgba(0, 212, 255, 0.15), transparent 70%); z-index: -1; }
+    .hero-content { max-width: 1600px; margin: 0 auto; padding: 0 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; position: relative; z-index: 2; }
+
+    .hero-text h1 {
+      font-family: 'Orbitron', sans-serif; font-size: 5.5rem; line-height: 1;
+      background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      margin-bottom: 1.5rem;
+    }
+    .hero-text p { font-size: 1.4rem; color: var(--gray); max-width: 600px; margin-bottom: 3rem; }
+
+    .hero-image { border-radius: 32px; overflow: hidden; box-shadow: var(--glow); border: 3px solid var(--accent); }
+    .hero-image img { width: 100%; height: 580px; object-fit: cover; transition: transform 0.7s ease; }
+    .hero-image:hover img { transform: scale(1.05); }
+
+    .container { max-width: 1600px; margin: 0 auto; padding: 0 3rem; }
+    .section { padding: 12rem 0; position: relative; z-index: 2; }
+    .section-title {
+      text-align: center; font-family: 'Orbitron', sans-serif; font-size: 3.8rem; margin-bottom: 6rem;
+      background: var(--gradient-title); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 3rem; }
+    .service-card { background: var(--card); padding: 3.5rem 2.5rem; border-radius: 28px; text-align: center; border: 1px solid var(--border); transition: var(--transition); }
+    .service-card:hover { transform: translateY(-20px); box-shadow: var(--glow); border-color: var(--accent); }
+    .service-card h3 { font-family: 'Orbitron', sans-serif; color: var(--accent); font-size: 1.8rem; margin: 1.5rem 0; }
+
+    /* CARROSSEL COM BOTÕES NOVOS E INDESTRUTÍVEIS */
+    .carousel {
+      position: relative; border-radius: 32px; overflow: hidden; box-shadow: var(--glow); border: 2px solid var(--border);
+    }
+    .carousel-track { display: flex; transition: transform 0.8s ease; }
+    .carousel-slide img { width: 100%; height: 700px; object-fit: cover; filter: brightness(0.9); }
+
+    /* BOTÕES NOVOS COM SVG */
+    .carousel-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(0, 212, 255, 0.4); width: 70px; height: 70px;
+      border-radius: 50%; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      backdrop-filter: blur(15px); box-shadow: var(--glow);
+      transition: var(--transition); z-index: 10;
+    }
+    .carousel-btn:hover {
+      background: var(--accent); transform: translateY(-50%) scale(1.2);
+    }
+    .carousel-btn svg { width: 32px; height: 32px; fill: white; }
+    .carousel-btn:hover svg { fill: #000; }
+
+    .prev { left: 30px; }
+    .next { right: 30px; }
+
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+    .form-container { background: var(--card); padding: 3.5rem; border-radius: 32px; border: 1px solid var(--border); box-shadow: var(--glow); position: relative; }
+
+    .success-message {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      background: rgba(0, 212, 255, 0.15); padding: 2rem 3rem; border-radius: 20px;
+      backdrop-filter: blur(10px); border: 2px solid var(--accent); color: white;
+      font-size: 1.3rem; text-align: center; display: none; z-index: 100;
+    }
+    .success-message.show { display: block; animation: bounce 0.6s; }
+    @keyframes bounce { 0%, 100% { transform: translate(-50%, -50%) scale(0.9); } 50% { transform: translate(-50%, -50%) scale(1.05); } }
+
+    input, select, textarea {
+      width: 100%; padding: 1.3rem; background: rgba(255,255,255,0.05); border: 2px solid var(--border);
+      border-radius: 18px; color: #FFFFFF !important; font-size: 1.1rem; transition: var(--transition);
+      margin-bottom: 1.5rem; font-family: 'Poppins', sans-serif;
+    }
+    select {
+      -webkit-appearance: none; -moz-appearance: none; appearance: none;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300D4FF'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+      background-repeat: no-repeat; background-position: right 1rem center; background-size: 12px;
+    }
+    select option { background: #1A1A2E; color: #FFFFFF; }
+    input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 4px rgba(0, 212, 255, 0.3); }
+
+    .btn-submit {
+      background: var(--gradient-text); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+      padding: 1.4rem 3rem; border: 2px solid transparent; border-image: var(--gradient-text) 1;
+      border-radius: 50px; font-weight: 800; font-size: 1.2rem; cursor: pointer; width: 100%;
+      box-shadow: var(--glow); transition: var(--transition); position: relative; overflow: hidden;
+    }
+    .btn-submit::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--gradient-text); opacity: 0.1; z-index: -1; border-radius: 50px; }
+    .btn-submit:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0, 212, 255, 0.6); }
+
+    .map-container { border-radius: 32px; overflow: hidden; box-shadow: var(--glow); border: 3px solid var(--accent); height: 600px; }
+
+    footer { background: #0a0a14; padding: 10rem 0 4rem; border-top: 3px solid var(--accent); position: relative; z-index: 2; font-family: 'Poppins', sans-serif; }
+    .footer-grid { display: grid; grid-template-columns: 2.2fr 1fr 1fr 1.3fr; gap: 4rem; margin-bottom: 4rem; max-width: 1600px; margin-left: auto; margin-right: auto; padding: 0 3rem; }
+    .footer-logo img { height: 100px; filter: drop-shadow(0 0 30px var(--accent)); margin-bottom: 1.5rem; }
+    .footer-about { font-size: 1.05rem; color: var(--gray); line-height: 1.9; margin: 1.5rem 0; }
+    .social-links { display: flex; gap: 1.2rem; margin-top: 1.5rem; }
+    .social-links a { width: 52px; height: 52px; background: var(--card); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; border: 2px solid var(--border); transition: var(--transition); }
+    .social-links a:hover { background: var(--accent); color: #000; transform: translateY(-8px); }
+    .footer-links h4 { font-family: 'Orbitron', sans-serif; background: var(--gradient-title); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 1.4rem; margin-bottom: 1.8rem; font-weight: 700; }
+    .footer-links a { color: #cccccc; text-decoration: none; display: block; margin: 1rem 0; padding-left: 2.5rem; position: relative; font-size: 1rem; line-height: 1.6; transition: var(--transition); }
+    .footer-links a:hover { color: var(--accent); padding-left: 3rem; }
+    .footer-links a::before { position: absolute; left: 0; top: 0; font-size: 1.4rem; transition: var(--transition); }
+    .copyright { text-align: center; padding: 3rem 0; border-top: 1px solid var(--border); color: #888; font-size: 0.95rem; max-width: 1600px; margin: 0 auto; padding-left: 3rem; padding-right: 3rem; }
+    .copyright span { background: var(--gradient-title); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  </style>
+</head>
+<body>
+
+  <div id="particles"></div>
+
+  <header>
+    <div class="nav-container">
+      <a href="#" class="logo">
+        <img src="img/logo-removebg-preview.png" alt="TM Telemigro">
+      </a>
+      <nav>
+        <ul>
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#galeria">Loja</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </nav>
+      <a href="https://wa.me/5538999999999" target="_blank" class="btn-cta">WHATSAPP</a>
+    </div>
+  </header>
+
+  <section class="hero" id="inicio">
+    <div class="hero-content">
+      <div class="hero-text" data-aos="fade-right">
+        <h1>TELEMICRO<br>INFORMÁTICA</h1>
+        <p>A tecnologia que São João Evangelista merece. Há 15 anos transformando problemas em soluções.</p>
+        <a href="#contato" class="btn-cta">ORÇAMENTO GRÁTIS</a>
+      </div>
+      <div class="hero-image" data-aos="fade-left">
+        <img src="img/loja.jpg" alt="Tecnologia">
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="servicos">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">NOSSOS SERVIÇOS</h2>
+      <div class="services-grid">
+        <div class="service-card" data-aos="fade-up" data-aos-delay="100"><h3>MANUTENÇÃO PREMIUM</h3><p>Formatação, upgrade, limpeza e recuperação</p></div>
+        <div class="service-card" data-aos="fade-up" data-aos-delay="200"><h3>PCS GAMER</h3><p>Montagem personalizada com RGB</p></div>
+        <div class="service-card" data-aos="fade-up" data-aos-delay="300"><h3>RECARGA DE TONER</h3><p>Qualidade original por até 70% menos</p></div>
+        <div class="service-card" data-aos="fade-up" data-aos-delay="400"><h3>SUPORTE 24H</h3><p>Remoto ou presencial</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERIA COM BOTÕES NOVOS -->
+  <section class="section" id="galeria">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">NOSSA LOJA</h2>
+      <div class="carousel" data-aos="fade-up">
+        <!-- BOTÃO ESQUERDA -->
+        <button class="carousel-btn prev" aria-label="Anterior">
+          <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+        </button>
+        <!-- BOTÃO DIREITA -->
+        <button class="carousel-btn next" aria-label="Próximo">
+          <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+        </button>
+        <div class="carousel-track">
+          <div class="carousel-slide"><img src="img/loja.jpg" alt="Loja 1"></div>
+          <div class="carousel-slide"><img src="img/loja.jpg" alt="Loja 2"></div>
+          <div class="carousel-slide"><img src="img/loja.jpg" alt="Loja 3"></div>
+          <div class="carousel-slide"><img src="img/loja.jpg" alt="Loja 4"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact section" id="contato">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">ORÇAMENTO EM 60 SEGUNDOS</h2>
+      <div class="contact-grid">
+        <div class="form-container" data-aos="fade-right">
+          <form action="https://formspree.io/f/SEU_EMAIL_AQUI" method="POST" id="budget-form">
+            <input type="text" name="nome" required placeholder="Seu nome">
+            <input type="tel" name="telefone" required placeholder="(38) 99999-9999">
+            <select name="servico" required>
+              <option value="">Selecione o serviço...</option>
+              <option>Formatação</option>
+              <option>Recarga de toner</option>
+              <option>Compra de notebook</option>
+              <option>Manutenção</option>
+              <option>Outro</option>
+            </select>
+            <textarea name="mensagem" rows="5" placeholder="Descreva seu problema..."></textarea>
+            <input type="hidden" name="_subject" value="Novo Orçamento - TM Telemigro">
+            <button type="submit" class="btn-submit">ENVIAR POR EMAIL</button>
+          </form>
+          <div class="success-message" id="success">
+            Enviado com sucesso!<br>Em até 5 minutos respondemos!
+          </div>
+        </div>
+        <div class="map-container" data-aos="fade-left">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3782.456789012345!2d-42.891234685!3d-18.567890187!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xa5b8c8d8e8f9a0b%3A0x123456789abcde!2sR.%20Benedito%20Valadares%2C%2078%20-%20Centro%2C%20S%C3%A3o%20Jo%C3%A3o%20Evangelista%20-%20MG!5e0!3m2!1spt-BR!2sbr!4v1735680000000" width="100%" height="600" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <img src="img/logo-removebg-preview.png" class="footer-logo" alt="Telemicro">
+        <p class="footer-about">Referência em tecnologia desde 2010. Atendimento personalizado, preço justo e soluções que funcionam.</p>
+        <div class="social-links"></div>
+      </div>
+      <div class="footer-links">
+        <h4>PRODUTOS</h4>
+        <a href="#">Notebooks</a><a href="#">PCs Gamer</a><a href="#">Impressoras</a><a href="#">Acessórios</a>
+      </div>
+      <div class="footer-links">
+        <h4>SERVIÇOS</h4>
+        <a href="#">Manutenção</a><a href="#">Recarga Toner</a><a href="#">Formatação</a><a href="#">Suporte</a>
+      </div>
+      <div class="footer-links">
+        <h4>CONTATO</h4>
+        <a href="tel:+5538999999999">Telefone (38) 99999-9999</a>
+        <a href="mailto:tm@telemigro.com.br">Email tm@telemigro.com.br</a>
+        <a href="#">Localização Rua Benedito Valadares, 78</a>
+        <a href="#">Mapa São João Evangelista - MG</a>
+      </div>
+    </div>
+    <div class="copyright">
+      © 2025 <span>TM TELEMIGRO INFORMÁTICA</span> • Todos os direitos reservados
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script>
+    AOS.init({ duration: 1200, once: true });
+
+    particlesJS('particles', {
+      particles: { number: { value: 80 }, color: { value: '#00D4FF' }, shape: { type: 'circle' },
+        opacity: { value: 0.5, random: true }, size: { value: 3, random: true },
+        line_linked: { enable: true, distance: 150, color: '#00D4FF', opacity: 0.2, width: 1 },
+        move: { enable: true, speed: 2 }
+      },
+      interactivity: { events: { onhover: { enable: true, mode: 'repulse' } } },
+      retina_detect: true
+    });
+
+    // CARROSSEL INDESTRUTÍVEL
+    const track = document.querySelector('.carousel-track');
+    const slides = document.querySelectorAll('.carousel-slide');
+    let index = 0;
+
+    const prevBtn = document.querySelector('.carousel-btn.prev');
+    const nextBtn = document.querySelector('.carousel-btn.next');
+
+    if (prevBtn && nextBtn) {
+      prevBtn.addEventListener('click', () => moveCarousel(-1));
+      nextBtn.addEventListener('click', () => moveCarousel(1));
+    }
+
+    function moveCarousel(direction) {
+      index = (index + direction + slides.length) % slides.length;
+      track.style.transform = `translateX(-${index * 100}%)`;
+    }
+
+    // Auto-play
+    setInterval(() => moveCarousel(1), 6000);
+
+    // Formulário
+    document.getElementById('budget-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const form = this;
+      const data = new FormData(form);
+      
+      fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      }).then(() => {
+        document.getElementById('success').classList.add('show');
+        form.reset();
+        setTimeout(() => document.getElementById('success').classList.remove('show'), 4000);
+      }).catch(() => {
+        alert('Erro ao enviar. Verifique sua conexão ou o Formspree.');
+      });
+    });
+  </script>
+</body>
+</html>
