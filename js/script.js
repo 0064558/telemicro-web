@@ -50,20 +50,36 @@ document.addEventListener('DOMContentLoaded', function () {
       const form = this;
       const data = new FormData(form);
 
+      const submitButton = form.querySelector('button[type="submit"]');
+      if (submitButton) submitButton.disabled = true;
+
       fetch(form.action, {
         method: 'POST',
         body: data,
         headers: { 'Accept': 'application/json' }
-      }).then(() => {
-        const success = document.getElementById('success');
-        if (success) {
-          success.classList.add('show');
-          form.reset();
-          setTimeout(() => success.classList.remove('show'), 4000);
-        }
-      }).catch(() => {
-        alert('Erro ao enviar. Verifique sua conexão ou o Formspree.');
-      });
+      })
+        .then(response => {
+          if (!response.ok) throw new Error('Network response was not ok');
+          return response.json().catch(() => ({}));
+        })
+        .then(() => {
+          const success = document.getElementById('success');
+          if (success) {
+            success.classList.add('show');
+            success.setAttribute('aria-hidden', 'false');
+            form.reset();
+            setTimeout(() => {
+              success.classList.remove('show');
+              success.setAttribute('aria-hidden', 'true');
+            }, 4000);
+          }
+        })
+        .catch(() => {
+          alert('Erro ao enviar. Verifique sua conexão ou o Formspree.');
+        })
+        .finally(() => {
+          if (submitButton) submitButton.disabled = false;
+        });
     });
   }
 });

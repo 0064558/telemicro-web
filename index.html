@@ -8,6 +8,16 @@
       name="description"
       content="Manutenção de PCs, notebooks, recarga de toner, venda de computadores e suporte presencial e online em São João Evangelista - MG"
     />
+    <!-- SEO / Social sharing basics (update values before publish) -->
+    <link rel="canonical" href="https://YOUR_DOMAIN_HERE/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Telemicro Informática — Assistência técnica e loja" />
+    <meta property="og:description" content="Serviços, vendas e suporte técnico em São João Evangelista - MG" />
+    <meta property="og:url" content="https://YOUR_DOMAIN_HERE/" />
+    <meta property="og:image" content="https://YOUR_DOMAIN_HERE/img/loja.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="robots" content="index,follow" />
+    <link rel="icon" href="img/LogoModificada2_resized.png" />
 
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&family=Orbitron:wght@700;900&display=swap"
@@ -36,7 +46,7 @@
           </ul>
         </nav>
 
-        <a href="https://wa.me/553334122826" target="_blank" class="btn-cta">WHATSAPP</a>
+        <a href="https://wa.me/553334122826" target="_blank" rel="noopener noreferrer" class="btn-cta">WHATSAPP</a>
       </div>
     </header>
 
@@ -56,7 +66,7 @@
           </div>
 
           <div class="hero-image" data-aos="fade-left">
-            <img src="img/loja.jpg" alt="Tecnologia" />
+            <img src="img/loja.jpg" alt="Tecnologia" width="1600" height="900" decoding="async" loading="eager" />
           </div>
         </div>
       </section>
@@ -122,19 +132,19 @@
 
             <div class="carousel-track">
               <div class="carousel-slide">
-                <img src="img/manutencao-especializada.jpg" alt="Manutenção Especializada" />
+                <img src="img/manutencao-especializada.jpg" alt="Manutenção Especializada" width="1200" height="675" decoding="async" loading="lazy" />
               </div>
 
               <div class="carousel-slide">
-                <img src="img/computador.jpg" alt="Computador" />
+                <img src="img/computador.jpg" alt="Computador" width="1200" height="675" decoding="async" loading="lazy" />
               </div>
 
               <div class="carousel-slide">
-                <img src="img/notebook.jpg" alt="Notebook" />
+                <img src="img/notebook.jpg" alt="Notebook" width="1200" height="675" decoding="async" loading="lazy" />
               </div>
 
               <div class="carousel-slide">
-                <img src="img/impressora.jpg" alt="Impressora" />
+                <img src="img/impressora.jpg" alt="Impressora" width="1200" height="675" decoding="async" loading="lazy" />
               </div>
             </div>
           </div>
@@ -148,14 +158,16 @@
           <div class="contact-grid">
             <div class="form-container" data-aos="fade-right">
               <form
-                action="https://formspree.io/f/rmatelemicroltda@hotmail.com"
-                method="POST"
-                id="budget-form"
+                action="https://formspree.io/f/xeowyana" method="POST" id="budget-form"
               >
-                <input type="text" name="nome" required placeholder="Seu nome" />
-                <input type="tel" name="telefone" required placeholder="(33) 3412-2826" />
+                <label for="nome" class="sr-only">Nome</label>
+                <input id="nome" type="text" name="nome" required placeholder="Seu nome" />
 
-                <select name="servico" required>
+                <label for="telefone" class="sr-only">Telefone</label>
+                <input id="telefone" type="tel" name="telefone" required placeholder="(33) 3412-2826" />
+
+                <label for="servico" class="sr-only">Serviço desejado</label>
+                <select id="servico" name="servico" required>
                   <option value="">Selecione o serviço...</option>
                   <option>Formatação</option>
                   <option>Recarga de Toner</option>
@@ -164,12 +176,13 @@
                   <option>Outro</option>
                 </select>
 
-                <textarea name="mensagem" rows="5" placeholder="Descreva seu problema..."></textarea>
+                <label for="mensagem" class="sr-only">Mensagem</label>
+                <textarea id="mensagem" name="mensagem" rows="5" placeholder="Descreva seu problema..."></textarea>
                 <input type="hidden" name="_subject" value="Novo Orçamento - Telemicro Informática" />
                 <button type="submit" class="btn-submit">ENVIAR POR EMAIL</button>
               </form>
 
-              <div class="success-message" id="success">
+              <div class="success-message" id="success" role="status" aria-live="polite" aria-hidden="true">
                 Enviado com sucesso!<br />Aguarde que logo responderemos!
               </div>
             </div>
@@ -202,26 +215,26 @@
 
         <div class="footer-links">
           <h4>PRODUTOS</h4>
-          <a href="#">Notebooks</a>
-          <a href="#">PCs Gamer</a>
-          <a href="#">Impressoras</a>
-          <a href="#">Acessórios</a>
+          <a>Notebooks</a>
+          <a>Computadores Gamer</a>
+          <a>Impressoras</a>
+          <a>Acessórios</a>
         </div>
 
         <div class="footer-links">
           <h4>SERVIÇOS</h4>
-          <a href="#">Manutenção</a>
-          <a href="#">Recarga Toner</a>
-          <a href="#">Formatação</a>
-          <a href="#">Suporte</a>
+          <a>Manutenção</a>
+          <a>Recarga de Toner</a>
+          <a>Formatação</a>
+          <a>Suporte</a>
         </div>
 
         <div class="footer-links">
           <h4>CONTATO</h4>
-          <a href="tel:+553334122826">Telefone (33) 3412-2826</a>
-          <a href="mailto:rmatelemicroltda@hotmail.com">Email rmatelemicroltda@hotmail.com</a>
-          <a href="#">Localização Rua Benedito Valadares, 78</a>
-          <a href="#">Mapa São João Evangelista - MG</a>
+          <a>(33) 3412-2826</a>
+          <a>rmatelemicroltda@hotmail.com</a>
+          <a>Rua Benedito Valadares, 78</a>
+          <a>São João Evangelista - MG</a>
         </div>
       </div>
 
