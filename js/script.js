@@ -1,4 +1,24 @@
 document.addEventListener('DOMContentLoaded', function () {
+  // Menu Mobile Toggle
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  
+  if (menuToggle && mobileMenu) {
+    menuToggle.addEventListener('click', function () {
+      mobileMenu.classList.toggle('active');
+      menuToggle.classList.toggle('active');
+    });
+
+    // Fechar menu ao clicar em um link
+    const menuLinks = mobileMenu.querySelectorAll('a');
+    menuLinks.forEach(link => {
+      link.addEventListener('click', function () {
+        mobileMenu.classList.remove('active');
+        menuToggle.classList.remove('active');
+      });
+    });
+  }
+
   // AOS
   if (window.AOS) {
     AOS.init({ duration: 1200, once: true });
