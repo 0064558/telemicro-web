@@ -1,0 +1,207 @@
+/* Reutilizando as variáveis e fontes do style.css */
+/* É importante garantir que o licitacoes.css seja carregado DEPOIS do style.css */
+
+.licitacoes-hero {
+    padding-top: 150px; /* Espaço para o header fixo */
+    padding-bottom: 2rem;
+    text-align: center;
+}
+
+.licitacoes-intro {
+    font-size: 1.1rem;
+    color: var(--gray);
+    max-width: 800px;
+    margin: 1.5rem auto 0;
+}
+
+.licitacoes-list {
+    padding-top: 1rem;
+    padding-bottom: 8rem;
+}
+
+.table-responsive {
+    overflow-x: auto;
+    width: 100%;
+    margin-top: 3rem;
+}
+
+/* Estilo da Tabela */
+.licitacoes-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 1rem; /* Espaçamento entre as linhas */
+    color: var(--text);
+    font-size: 1rem;
+}
+
+.licitacoes-table thead th {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--accent);
+    text-align: left;
+    padding: 0.8rem 1.5rem;
+    border-bottom: 2px solid var(--accent);
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.licitacoes-table tbody tr {
+    background: var(--card); /* Fundo escuro para a linha */
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: var(--transition);
+}
+
+.licitacoes-table tbody tr:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--glow);
+}
+
+.licitacoes-table tbody td {
+    padding: 1.5rem;
+    vertical-align: middle;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+/* Arredondamento dos cantos para a primeira e última célula */
+.licitacoes-table tbody tr td:first-child {
+    border-left: 1px solid var(--border);
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+.licitacoes-table tbody tr td:last-child {
+    border-right: 1px solid var(--border);
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+/* Estilos de Status (Cores baseadas na paleta) */
+.status-concluida {
+    color: #4CAF50; /* Verde escuro para Concluída/Ganho */
+    font-weight: 600;
+}
+
+.status-andamento {
+    color: var(--accent); /* Ciano para Em Andamento */
+    font-weight: 600;
+}
+
+.status-homologada {
+    color: #FFC107; /* Amarelo/Dourado para Homologada/Finalizada */
+    font-weight: 600;
+}
+
+/* Botão de Download (Estilo CTA) */
+.btn-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    font-weight: 700;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    transition: var(--transition);
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    background: rgba(0, 212, 255, 0.1);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+}
+
+.btn-download:hover {
+    background: var(--accent);
+    color: var(--bg);
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.6);
+    transform: translateY(-2px);
+}
+
+.btn-download svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor; /* Usa a cor do texto/accent */
+}
+
+/* Efeito de destaque para o link atual na navegação */
+.current-page {
+  color: var(--accent) !important;
+  text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+}
+
+/* Garantir que o link atual tenha o underline de destaque */
+.current-page::after {
+  content: '';
+  width: 100% !important;
+  background: var(--accent) !important;
+  box-shadow: var(--glow) !important;
+}
+
+/* Responsividade da Tabela (Mobile First) */
+@media (max-width: 992px) {
+    .licitacoes-table {
+        border: none;
+        border-spacing: 0;
+        margin-top: 1rem;
+    }
+
+    .licitacoes-table thead {
+        display: none; /* Esconde o cabeçalho no mobile */
+    }
+
+    .licitacoes-table tbody tr {
+        display: block;
+        margin-bottom: 2rem;
+        padding: 1.5rem;
+        border: 2px solid var(--accent);
+        border-radius: 12px;
+        box-shadow: var(--glow);
+    }
+
+    .licitacoes-table tbody tr:hover {
+        transform: none; /* Desativa a animação de hover no mobile */
+    }
+
+    .licitacoes-table tbody td {
+        display: block;
+        text-align: right;
+        padding: 0.7rem 0;
+        border: none;
+    }
+
+    /* Títulos antes do conteúdo da célula */
+    .licitacoes-table tbody td::before {
+        content: attr(data-label);
+        float: left;
+        font-weight: 700;
+        color: var(--gray);
+        text-transform: uppercase;
+        font-size: 0.9rem;
+    }
+    
+    /* Remove a borda e arredondamento padrão da tabela para o estilo de cartão */
+    .licitacoes-table tbody tr td:first-child,
+    .licitacoes-table tbody tr td:last-child {
+        border-left: none;
+        border-right: none;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    .licitacoes-table tbody td:nth-child(4) { /* Status */
+        border-bottom: 1px dashed var(--border);
+        padding-bottom: 1rem;
+    }
+
+    .licitacoes-table tbody td:last-child {
+        text-align: center;
+        padding-top: 1.5rem;
+    }
+
+    .btn-download {
+        width: 100%;
+        justify-content: center;
+    }
+}
