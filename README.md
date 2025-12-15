@@ -1,2 +1,2 @@
 # PROJETO-TELEMICRO
-Lading-PAGE
+Landing Page para a loja Telemicro Informática
