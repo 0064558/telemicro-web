@@ -125,20 +125,83 @@
 
 /* Efeito de destaque para o link atual na navegação */
 .current-page {
-  color: var(--accent) !important;
-  text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+    color: var(--accent) !important;
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
 }
 
 /* Garantir que o link atual tenha o underline de destaque */
 .current-page::after {
-  content: '';
-  width: 100% !important;
-  background: var(--accent) !important;
-  box-shadow: var(--glow) !important;
+    content: '';
+    width: 100% !important;
+    background: var(--accent) !important;
+    box-shadow: var(--glow) !important;
+}
+
+/* Estilos para o campo de busca/filtro */
+.search-filter-container {
+    display: flex;
+    max-width: 600px;
+    margin: 0 auto 3rem auto;
+    position: relative;
+}
+
+#filtro-busca {
+    flex-grow: 1;
+    padding: 1rem 3.5rem 1rem 1.5rem;
+    border-radius: 50px;
+    border: 2px solid var(--accent);
+    background: var(--card);
+    color: var(--text);
+    font-size: 1rem;
+    width: 100%;
+}
+
+#filtro-busca::placeholder {
+    color: var(--gray);
+}
+
+#filtro-busca:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(0, 212, 255, 0.3);
+}
+
+#limpar-busca {
+    position: absolute;
+    right: 15px;
+    top: 35%;
+    transform: translateY(-45%); 
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px; /* Definir altura fixa ajuda na centralização */
+    width: 30px;  /* Definir largura fixa ajuda na centralização */
+    transition: var(--transition);
+    line-height: 0; /* Remove qualquer altura de linha de texto herdada */
+}
+
+#limpar-busca svg {
+    width: 22px; /* Tamanho levemente maior para melhor visibilidade */
+    height: 22px;
+    fill: var(--gray);
+    transition: fill 0.3s;
+    display: block;
+}
+
+#limpar-busca:hover svg {
+    fill: var(--red);
 }
 
 /* Responsividade da Tabela (Mobile First) */
 @media (max-width: 992px) {
+    .search-filter-container {
+        margin: 0 0 2rem 0;
+        max-width: 100%;
+    }
+
     .licitacoes-table {
         border: none;
         border-spacing: 0;
