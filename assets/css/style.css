@@ -701,6 +701,43 @@ footer {
 
 /* MEDIA QUERIES PARA RESPONSIVIDADE */
 
+/* AJUSTE DO HEADER PARA IPAD E TABLETS (Breakpoint 1024px) */
+@media (max-width: 1024px) {
+  header {
+    padding: 1rem 0;
+  }
+
+  .nav-container {
+    padding: 0 1.5rem;
+  }
+
+  /* Esconde o menu horizontal (desktop) mais cedo */
+  nav {
+    display: none; 
+  }
+
+  /* Esconde o botão de WhatsApp da direita */
+  .desktop-only {
+    display: none;
+  }
+
+  /* Mostra o botão do menu hambúrguer */
+  .menu-toggle {
+    display: flex;
+  }
+
+  /* Ajusta o tamanho do logo para não ocupar tanto espaço vertical */
+  .logo img {
+    height: 60px;
+  }
+
+  /* Garante que o menu mobile apareça corretamente quando ativado */
+  .mobile-menu {
+    top: 100%;
+    /* Opcional: Garante que o menu ocupe a tela toda no tablet se desejar */
+  }
+}
+
 /* Tablets e dispositivos médios (768px e abaixo) */
 @media (max-width: 768px) {
   html, body {
@@ -1030,4 +1067,49 @@ footer {
     padding: 0.6rem 1rem;
     font-size: 0.8rem;
   }
+}
+
+/* AJUSTE PARA IPADS (Air, Pro e Mini) */
+@media (min-width: 769px) and (max-width: 1200px) {
+  .hero {
+    height: auto;
+    padding-top: 140px; /* Espaço para o header */
+    padding-bottom: 40px;
+  }
+
+  .hero-content {
+    grid-template-columns: 1fr 1fr; /* Mantém duas colunas */
+    align-items: stretch; /* Faz as duas colunas terem a mesma altura */
+    gap: 2rem;
+  }
+
+  .hero-image {
+    display: flex;
+    height: 100%; /* Força o container a ocupar a altura total da grid */
+  }
+
+  .hero-image img {
+    height: 100% !important; /* Obriga a imagem a esticar na altura */
+    width: 100%;
+    object-fit: cover; /* Garante que ela preencha sem distorcer */
+    max-height: none; /* Remove a limitação anterior */
+  }
+
+  /* Ajuste do Carrossel para iPads */
+  .carousel {
+    height: 500px; /* Aumenta a altura para preencher melhor a tela do iPad */
+    max-height: 60vh;
+  }
+}
+
+/* Correção específica para o container da imagem da loja na seção Hero */
+.hero-image {
+    height: 100%;
+    width: 100%;
+}
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
