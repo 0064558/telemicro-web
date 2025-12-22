@@ -79,17 +79,17 @@
 
 /* Estilos de Status (Cores baseadas na paleta) */
 .status-concluida {
-    color: #4CAF50; /* Verde escuro para Concluída/Ganho */
+    color: #5cdb60; /* Verde escuro para Concluída/Ganho */
     font-weight: 600;
 }
 
 .status-andamento {
-    color: var(--accent); /* Ciano para Em Andamento */
+    color: #FFC107; /* Amarelo/Dourado para Andamento */
     font-weight: 600;
 }
 
 .status-homologada {
-    color: #FFC107; /* Amarelo/Dourado para Homologada/Finalizada */
+    color: var(--accent); /* Ciano para Homologada/Finalizada */
     font-weight: 600;
 }
 

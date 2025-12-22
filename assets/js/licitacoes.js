@@ -44,6 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         data.forEach(licitacao => {
             const statusClass = getStatusClass(licitacao.status);
+            
 
             const row = document.createElement('tr');
             row.innerHTML = `
@@ -89,9 +90,15 @@ document.addEventListener('DOMContentLoaded', () => {
             return response.json();
         })
         .then(licitacoes => {
-            todasLicitacoes = licitacoes;
-            renderTable(todasLicitacoes);
-        })
+    // Ordena por data (as mais recentes primeiro)
+    // Assume que a data está no formato DD/MM/AAAA no JSON
+    todasLicitacoes = licitacoes.sort((a, b) => {
+        const dateA = new Date(a.publicacao.split('/').reverse().join('-'));
+        const dateB = new Date(b.publicacao.split('/').reverse().join('-'));
+        return dateB - dateA;
+    });
+    renderTable(todasLicitacoes);
+})
         .catch(error => {
             console.error('Erro:', error);
             // Mostrar uma mensagem de erro na tabela para o usuário
